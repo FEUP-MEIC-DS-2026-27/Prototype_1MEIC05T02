@@ -1,0 +1,12 @@
+services:
+  contracts-service:
+    build: ./contracts-service
+  gateway:
+    build: ./gateway
+    environment:
+      CONTRACTS_URL: http://contracts-service:8081
+    ports: ["8080:8080"]
+    depends_on: [contracts-service]
+  frontend:
+    build: ./web
+    ports: ["5173:80"]
